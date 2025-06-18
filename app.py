@@ -13,14 +13,12 @@ Ask a question from the list or try your own:
 - How do you push your boundaries?
 """)
 
-if st.button("🎤 Ask via Mic"):
-    with st.spinner("Listening..."):
-        question = transcribe_audio()
-    if question:
-        st.success(f"You asked: {question}")
-        with st.spinner("Generating response..."):
-            answer = get_personalized_response(question)
-        st.markdown(f"**Answer:** {answer}")
-        speak_text(answer)
-    else:
-        st.error("Couldn't capture any audio. Try again.")
+st.info("🎙️ Mic input is supported in the local version. This demo uses text input for cloud compatibility.")
+
+question = st.text_input("Type your question here:")
+
+if question:
+    with st.spinner("Generating response..."):
+        answer = get_personalized_response(question)
+    st.markdown(f"**Answer:** {answer}")
+    speak_text(answer)
